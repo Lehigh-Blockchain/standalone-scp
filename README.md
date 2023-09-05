@@ -9,7 +9,7 @@ Clone `stellar-core` locally.
 ```
 $ git clone https://github.com/stellar/stellar-core
 ```
-Follow instructions on how to install `stellar-core` [https://github.com/stellar/stellar-core/blob/master/INSTALL.md]()
+Follow instructions on how to install `stellar-core` [https://github.com/stellar/stellar-core/blob/master/INSTALL.md](https://github.com/stellar/stellar-core/blob/master/INSTALL.md)
 
 ## 2. Edit makefile
 In `standalone-scp/Makefile`, set `CORE_DIR?=` to the location of your built `stellar-core`
