@@ -50,7 +50,7 @@ CORE_INCLUDES=-I $(CORE_DIR) \
 CXXFLAGS := -O2 -g -std=c++17 -pthread -Wall $(CORE_INCLUDES)
 
 # Define linker flags
-LDFLAGS := $(CORE_LIBDIRS) -lpthread -lsodium -l3rdparty -lxdrpp -lz3
+LDFLAGS := $(CORE_LIBDIRS) -lpthread -lsodium -l3rdparty -lxdrpp #-lz3
 
 # Define target executable
 TARGET := main.exe
