@@ -36,28 +36,6 @@ First line is the name of the node (turned into a NodeID type), second line is t
 nodes in it's quorum slice (turned into a SCPQuorumSet type), and the third line is blank.
 */
 
-
-/*
-    GENERAL TODOs
-        [] when accessing a mapping like "curr_node = name_to_node[node_name];" if the key node_name doesn't
-            yet exist in the mapping name_to_node it will create a new entry to the mapping.  We don't really
-            want this so maybe throw an error if this happens.
-        [] mess around with node-input.txt until you find some unexpected behavior.  Look at the printed output,
-            specifically with the "printing quorum slices" section because that is where the parser is weakest.
-        [] (later) If we eventually find the need to, modify the parser to support inner sets.  This would 
-            be a large change because we would have to change the format of node-input.txt
-
-    TODOs and issues for this file
-        [] Does not do anything if there is two of the same country in a quorum slice (Yiannis: usa usa)
-        [] Does not do anything if there are two of the same nodes with different quorem slices (does a weird thing
-        where it still prints out just not the quorem slice)
-        [] issue with adding more than 2 contries in a quorem slice (Prints blank only at the end, if you add to middle of slice it works)
-        [] does not understand when the next node starts if there is no space, lets account for that
-        [] issues with two word contries like 'New Zealand'
-        [] when you add into quorum slice it thinks some countries are its own node (Big Issue)
-
-*/
-
 // From reference code executable.cpp, but it's being used differently
 // in executable.cpp, this is called once to create a single quorum set for a network
 // in our model, we want to support many quorum sets for a network, so we call this for each node
