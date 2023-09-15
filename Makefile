@@ -5,7 +5,7 @@
 # as the default locations of stellar-core and ivy.
 # If you use different locations, use `env` to overwrite it.
 # e.g., `env CORE_DIR=~/stellar-core IVY_DIR=~/ivy make executable`.
-CORE_DIR?=$(HOME)/dev/cbdc/stellar-core
+CORE_DIR?=$(HOME)/Desktop/BlockchainFall2023/stellar-core
 
 CORE_OBJS=$(CORE_DIR)/src/crypto/BLAKE2.o \
           $(CORE_DIR)/src/crypto/Hex.o \

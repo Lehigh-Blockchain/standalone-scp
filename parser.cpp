@@ -5,6 +5,7 @@
 #include <map>
 #include <bits/stdc++.h>
 #include <tuple>
+#include <sstream>
 
 // Stellar includes
 #include <crypto/Hex.h>
@@ -45,6 +46,15 @@ nodes in it's quorum slice (turned into a SCPQuorumSet type), and the third line
             specifically with the "printing quorum slices" section because that is where the parser is weakest.
         [] (later) If we eventually find the need to, modify the parser to support inner sets.  This would 
             be a large change because we would have to change the format of node-input.txt
+
+    TODOs and issues for this file
+        [] Does not do anything if there is two of the same country in a quorum slice (Yiannis: usa usa)
+        [] Does not do anything if there are two of the same nodes with different quorem slices (does a weird thing
+        where it still prints out just not the quorem slice)
+        [] issue with adding more than 2 contries in a quorem slice (Prints blank only at the end, if you add to middle of slice it works)
+        [] does not understand when the next node starts if there is no space, lets account for that
+        [] issues with two word contries like 'New Zealand'
+        [] when you add into quorum slice it thinks some countries are its own node (Big Issue)
 
 */
 
