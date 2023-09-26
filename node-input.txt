@@ -1,11 +1,17 @@
 canada
-usa china
+usa, china, india
 
 usa
-canada china
+canada, china, india
 
 china
-canada usa
+canada, usa
 
 india
-usa
+canada, usa, germany
+
+germany
+india
+
+england
+japan

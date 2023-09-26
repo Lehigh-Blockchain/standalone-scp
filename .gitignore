@@ -1,3 +1,5 @@
 *.o
 *.exe
 *.d
+Makefile
+node-input.txt

@@ -173,10 +173,27 @@ int main() {
         curr_node = it->first;
         curr_quorum = it->second;
         cout << "Quorum slice for node: " << node_to_name[curr_node] << "\n";
+        bool has_validators = false; // Track if any validators are printed
         for(stellar::NodeID i: curr_quorum->validators) {
-            cout << "   " << node_to_name[i] << "\n";
+            if (node_to_name.find(i) != node_to_name.end()) { // Check if the node is valid
+                cout << "   " << node_to_name[i] << "\n";
+                has_validators = true;
+            } else {
+                cout << "   [ERROR: Unrecognized node in quorum slice]\n";
+                // print all nodes in quorum slice
+                for(stellar::NodeID j: curr_quorum->validators) {
+                    cout << "NODE_TO_NAME   " << node_to_name[j] << "\n";
+                }
+                cout << "\n";
+
+                has_validators = true;
+            }
+        }
+        if (!has_validators) {
+            cout << "   [No validators in quorum slice]\n";
         }
     }
+
 
     // Setting up stellar logging.  This is needed for stellar objects
     stellar::Logging::init();
