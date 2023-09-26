@@ -179,18 +179,17 @@ int main() {
                 cout << "   " << node_to_name[i] << "\n";
                 has_validators = true;
             } else {
-                cout << "   [ERROR: Unrecognized node in quorum slice]\n";
-                // print all nodes in quorum slice
-                for(stellar::NodeID j: curr_quorum->validators) {
-                    cout << "NODE_TO_NAME   " << node_to_name[j] << "\n";
-                }
-                cout << "\n";
+                cout << RED << "   [ERROR: Unrecognized node in quorum slice]" << RESET << endl;
+                // for(stellar::NodeID j: curr_quorum->validators) {
+                //     cout << "NODE_TO_NAME   " << node_to_name[j] << "\n";
+                // }
+                // cout << "\n";
 
                 has_validators = true;
             }
         }
         if (!has_validators) {
-            cout << "   [No validators in quorum slice]\n";
+            cout << RED << "   [No validators in quorum slice]" << RESET << endl;
         }
     }
 
