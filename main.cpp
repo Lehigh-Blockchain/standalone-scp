@@ -7,6 +7,7 @@
 #include <tuple>
 #include "main.h"
 #include "parser.h"
+#include "colors.h"
 
 #define USE_SPDLOG // ??
 

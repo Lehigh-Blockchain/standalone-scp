@@ -5,6 +5,7 @@
 #include <map>
 #include <bits/stdc++.h>
 #include <tuple>
+#include "colors.h"
 
 // Stellar includes
 #include <crypto/Hex.h>
@@ -53,6 +54,11 @@ stellar::SCPQuorumSetPtr initQSet(xdr::xvector<stellar::NodeID> const& nodes) {
     return qset;
 }
 
+// checks if node exists in node_to_name
+bool nodeExists(const string& node_name, const map<stellar::NodeID, string>& node_to_name) {
+    return std::find_if(node_to_name.begin(), node_to_name.end(), [&](const auto& pair) { return pair.second == node_name; }) != node_to_name.end();
+}
+
 tuple<
     xdr::xvector<stellar::NodeID>,
     map<stellar::NodeID, stellar::SCPQuorumSetPtr>,
@@ -73,6 +79,14 @@ parseInput(string filename) {
     stellar::NodeID new_node;
 
     while(getline(input_file, node_name)){
+
+        if (nodeExists(node_name, node_to_name)) {
+            cout << RED << "ERROR: Node name '" << node_name << "' already exists. Skipping this node and its quorum." << RESET << endl;
+            getline(input_file, quorum_str);                // skip the quorum line
+            getline(input_file, node_name);                 // read the blank line
+            continue;                                       // skip the rest of the loop iteration
+        }
+
         new_node = stellar::PubKeyUtils::random(); 
         node_vec.push_back(new_node);
         node_to_name[new_node] = node_name;
@@ -96,7 +110,7 @@ parseInput(string filename) {
     for (stellar::NodeID i : node_vec) {
         vector<string> quorum_names = node_to_quorum_names.at(i);
         xdr::xvector<stellar::NodeID> quorum_vec;
-        quorum_vec.push_back(i); // Add the node itself to its quorum slice
+        quorum_vec.push_back(i);                // Add node itself to its quorum slice
         for (const string& node_name : quorum_names) {
             stellar::NodeID curr_node = name_to_node[node_name];
             quorum_vec.push_back(curr_node);
@@ -105,6 +119,7 @@ parseInput(string filename) {
     }
 
     input_file.close();
+
 
     return make_tuple(node_vec, node_to_quorum, node_to_name);
 }

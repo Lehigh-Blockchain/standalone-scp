@@ -2,4 +2,4 @@
 *.exe
 *.d
 Makefile
-node-input.txt
+./node-input.txt
