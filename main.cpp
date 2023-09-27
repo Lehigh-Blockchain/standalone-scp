@@ -185,7 +185,6 @@ int main() {
                 //     cout << "NODE_TO_NAME   " << node_to_name[j] << "\n";
                 // }
                 // cout << "\n";
-
                 has_validators = true;
             }
         }

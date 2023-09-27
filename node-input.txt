@@ -1,32 +1,14 @@
 canada
-usa, china, india
+usa, china, india, united kingdom
 
 usa
-canada, china, india
+canada, china
 
 china
-canada, usa
+canada, usa, canada
 
 india
-canada, usa, germany, new zealand
+usa, united kingdom, canada
 
-germany
-india, egnla
-
-england
-india, new zealand
-
-new zealand
-england, india, the democratic republic of the congo
-
-england
-india, china
-
-the democratic republic of the congo
-new zealand
-
-england
-china, new zealand
-
-india
-china, usa
+united kingdom
+usa, canada, india

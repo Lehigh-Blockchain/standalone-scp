@@ -55,7 +55,7 @@ stellar::SCPQuorumSetPtr initQSet(xdr::xvector<stellar::NodeID> const& nodes) {
 }
 
 // checks if node exists in node_to_name
-bool nodeExists(const string& node_name, const map<stellar::NodeID, string>& node_to_name) {
+bool checkNodeExists(const string& node_name, const map<stellar::NodeID, string>& node_to_name) {
     return std::find_if(node_to_name.begin(), node_to_name.end(), [&](const auto& pair) { return pair.second == node_name; }) != node_to_name.end();
 }
 
@@ -78,9 +78,9 @@ parseInput(string filename) {
     string quorum_str;
     stellar::NodeID new_node;
 
-    while(getline(input_file, node_name)){
+    while(getline(input_file, node_name)) {
 
-        if (nodeExists(node_name, node_to_name)) {
+        if(checkNodeExists(node_name, node_to_name)) {
             cout << RED << "ERROR: Node name '" << node_name << "' already exists. Skipping this node and its quorum." << RESET << endl;
             getline(input_file, quorum_str);                // skip the quorum line
             getline(input_file, node_name);                 // read the blank line
@@ -103,23 +103,30 @@ parseInput(string filename) {
             }
             node_to_quorum_names[new_node] = quorum_names;
         }
-
         getline(input_file, node_name); // Read the blank line
     }
 
-    for (stellar::NodeID i : node_vec) {
+    for(stellar::NodeID i : node_vec) {
         vector<string> quorum_names = node_to_quorum_names.at(i);
         xdr::xvector<stellar::NodeID> quorum_vec;
-        quorum_vec.push_back(i);                // Add node itself to its quorum slice
-        for (const string& node_name : quorum_names) {
-            stellar::NodeID curr_node = name_to_node[node_name];
-            quorum_vec.push_back(curr_node);
+        quorum_vec.push_back(i); // Add node itself to its quorum slice
+
+        // set to track unique nodes in the quorum slice
+        set<string> unique_nodes;
+        unique_nodes.insert(node_to_name[i]);           // Add the current node to the set
+
+        for(const string& node_name : quorum_names) {
+            // check if the node is already in the set
+            if(unique_nodes.find(node_name) == unique_nodes.end()) {
+                stellar::NodeID curr_node = name_to_node[node_name];
+                quorum_vec.push_back(curr_node);
+                unique_nodes.insert(node_name); // Add the node to the set
+            }
         }
         node_to_quorum[i] = initQSet(quorum_vec);
     }
 
+    
     input_file.close();
-
-
     return make_tuple(node_vec, node_to_quorum, node_to_name);
 }
