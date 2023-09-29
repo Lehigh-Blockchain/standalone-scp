@@ -1,11 +1,14 @@
 canada
-usa china
+usa, china, india, united kingdom
 
 usa
-canada china
+canada, china
 
 china
-canada usa
+canada, usa, canada
 
 india
-usa
+usa, united kingdom, canada
+
+united kingdom
+usa, canada, india

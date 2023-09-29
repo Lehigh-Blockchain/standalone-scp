@@ -30,13 +30,25 @@ If you make changes to any files or want to re-compile:
 
 # node-input.txt
 This is the input file that defines the nodes and their trusted slices.
+Each nodes quorum slices must have the node in their quorum slice.  
+I.e.
+```
+a
+b, c
+
+b,
+a, c
+
+c
+a, b
+```
 Input file needs to be in the root folder of this repo.
 Format is as follows:
 
 [node name]<br />
-[names of trusted nodes to be added to node's slice.  Space separated]<br />
+[names of trusted nodes to be added to node's slice.  Comma separated]<br />
 [empty line]<br />
 [node name]<br />
-[names of trusted nodes to be added to node's slice.  Space separated]<br />
+[names of trusted nodes to be added to node's slice.  Comma separated]<br />
 [empty line]<br />
 etc.
