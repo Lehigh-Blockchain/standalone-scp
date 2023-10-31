@@ -6,6 +6,7 @@
 #include <bits/stdc++.h>
 #include <tuple>
 #include "colors.h"
+#include <sstream>
 
 // Stellar includes
 #include <crypto/Hex.h>
